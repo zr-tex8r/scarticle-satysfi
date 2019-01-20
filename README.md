@@ -13,7 +13,7 @@ SATySFiの文法（特に型システム）に不慣れな初心者でも簡単�
 
 ### インストール
 
-  - `*.satyh` → `$LIBROOT/dist/packages`
+  - `*.satyh*`, `*.satyg` → `$LIBROOT/dist/packages`
 
 ※`$LIBROOT`（ライブラリルート）の位置はSATySFiをopamからビルドした場合は
 `~/.satysfi`になる。
@@ -53,11 +53,13 @@ scarticle パッケージ ー 本体
 
         +align +math +math-list +p +pn +section +subsection
         \LaTeX \SATySFi \TeX \align \emph \eqn \figure \fil \fil-both
-        \footnote \hskip \math \math-list \no-break \ref \ref-page
+        \footnote \hskip \math-list \no-break \ref \ref-page
 
 更新履歴
 --------
 
+  * Version 0.3.0  〈2019/01/20〉
+      - （試験的）scsatysfi出力モードに対応。
   * Version 0.2.0  〈2018/12/18〉
       - 最初の公開版。
 
