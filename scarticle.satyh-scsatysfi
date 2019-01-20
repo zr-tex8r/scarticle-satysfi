@@ -1,0 +1,49 @@
+% scarticle.satyh-scsatysfi: An essential docuemnt class for SATySFi
+%
+% Copyright (c) 2019 Takayuki YATO (aka. "ZR")
+%   GitHub:   https://github.com/zr-tex8r
+%   Twitter:  @zr_tex8r
+% Distributed under the MIT License.
+
+@require: list
+@require: scdummyt
+
+%=========================================================== module SCArticle
+module SCArticle : sig
+
+val document : 'a -> block-text -> string
+  constraint 'a :: (|
+    title : string; show-title : bool;
+  |)
+
+end = struct
+%--------------------------------------- helpers
+
+let concat tinfo ss =
+  List.fold-left (^) ` ` (List.map (fun s -> s ^ (break tinfo)) ss)
+
+let chesnt = string-unexplode [9731] % U+2603
+let chduck = string-unexplode [129414] % U+1F986
+
+%--------------------------------------- document
+
+let document docopt _ =
+
+  let tinfo0 = get-initial-text-info () in
+
+  let title = docopt#title in
+  let showttl = docopt#show-title && (string-length title) > 0 in
+
+  let tsmain =
+    if showttl then [ chduck ^ #` ` ^ title; chesnt ]
+    else [ chesnt ]
+  in
+    concat tinfo0 tsmain
+
+end
+%=========================================================== global
+
+let document = SCArticle.document
+
+%=========================================================== all done
+%% EOF
