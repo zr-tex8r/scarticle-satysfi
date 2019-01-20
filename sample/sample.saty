@@ -1,0 +1,11 @@
+% scarticle を使おう!
+@require: scarticle
+
+document (|
+  title = `サンプル`; % タイトルは*文字列で*指定する
+  show-title = true; % タイトルを出力するか
+|) '<
+  % 本文は何か書いてもいいけど非本質的なので全て無視されて,
+  % 出力は必ず本質的になる(箒つき)
+  +p {scarticle で誰でも\emph{簡単}に\SATySFi;文書を作れます。}
+>
