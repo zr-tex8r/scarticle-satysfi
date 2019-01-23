@@ -1,0 +1,84 @@
+% scarticle.satyh-plain: An essential docuemnt class for SATySFi
+%
+% Copyright (c) 2019 Takayuki YATO (aka. "ZR")
+%   GitHub:   https://github.com/zr-tex8r
+%   Twitter:  @zr_tex8r
+% Distributed under the MIT License.
+
+@require: list
+@require: option
+@require: scdummyt
+
+%=========================================================== module SCArticle
+module SCArticle : sig
+
+val document : 'a -> block-text -> string
+  constraint 'a :: (|
+    title : string; show-title : bool;
+  |)
+
+end = struct
+%--------------------------------------- helpers
+
+let iota n =
+  let-rec iter | 0 rs = rs
+               | k rs = iter (k - 1) ((k - 1) :: rs) in
+    iter n []
+
+let str-is-ascii =
+  let ptn = [94;91;0;45;127;93;42;36] in %'^[\0-\x7F]*$'
+  let rxascii = regexp-of-string (string-unexplode ptn) in
+    string-match rxascii
+
+let str-pea-width str =
+  let wdi i =
+    if str-is-ascii (string-sub str i 1) then 1 else 2
+  in
+    List.fold-left (+) 0 (List.map wdi (iota (string-length str)))
+
+let str-center lwd str =
+  let spaces n =
+    List.fold-left (^) ` ` (List.map (fun _ -> #` `#) (iota n)) in
+  let mgn = lwd - (str-pea-width str) in
+    if mgn > 0 then
+      spaces (mgn / 2) ^ str ^ spaces (mgn - mgn / 2)
+    else str
+
+let concat tinfo ss =
+  List.fold-left (^) ` ` (List.map (fun s -> s ^ (break tinfo)) ss)
+
+%--------------------------------------- document
+
+let tsesnt = [
+  #`        ____    `#;
+  #` \N/ ___HHHH    `#;
+  #`  V / .   . \   `#;
+  #`  T \  ---  /   `#;
+  #`  Y :#######: V `#;
+  #`  |\/   o*"*\/  `#;
+  #`  |{    o    }  `#;
+  #`  | \_______/   `#;
+]
+
+let document docopt _ =
+
+  let tinfo0 = get-initial-text-info () in
+
+  let title = docopt#title in
+  let showttl = docopt#show-title && (string-length title) > 0 in
+
+  let tsmain =
+    if showttl then
+      let lwd = string-length (Option.from ` ` (List.nth 0 tsesnt)) in
+        (str-center lwd title) :: tsesnt
+    else tsesnt
+  in
+    concat tinfo0 tsmain
+
+end
+%=========================================================== global
+
+let document = SCArticle.document
+
+%=========================================================== all done
+%% EOF
