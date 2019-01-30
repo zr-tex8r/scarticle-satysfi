@@ -26,7 +26,7 @@ SATySFiの文法（特に型システム）に不慣れな初心者でも簡単�
 scarticle パッケージ ー 本体
 ----------------------------
 
-## 基本的な使い方
+### 基本的な使い方
 
     @require: scarticle
 
@@ -45,7 +45,7 @@ scarticle パッケージ ー 本体
   * documentの引数のブロックテキストが「本文の内容」に相当するが、これは
     全く本質でないので無視され、出力PDFの本文は必ず本質的になる。
 
-## 補足
+### 補足
 
   * 互換性のため、本文のブロックテキストの中では標準文書クラスと同様の型
     をもつ以下のコマンド群が使用できる。無論、本文自体が全て無視される
@@ -53,11 +53,13 @@ scarticle パッケージ ー 本体
 
         +align +math +math-list +p +pn +section +subsection
         \LaTeX \SATySFi \TeX \align \emph \eqn \figure \fil \fil-both
-        \footnote \hskip \math-list \no-break \ref \ref-page
+        \footnote \href \hskip \math-list \no-break \ref \ref-page
 
 更新履歴
 --------
 
+  * Version 0.3.2  〈2019/01/30〉
+      - 標準文書クラスの機能拡張に追随。
   * Version 0.3.1  〈2019/01/23〉
       - （試験的）plain出力モードに対応。
   * Version 0.3.0  〈2019/01/20〉
