@@ -208,8 +208,8 @@ direct +math : [math] block-cmd
 direct +math-list : [math list] block-cmd
 direct +p : [inline-text] block-cmd
 direct +pn : [inline-text] block-cmd
-direct +section : [string?; inline-text; block-text] block-cmd
-direct +subsection : [string?; inline-text; block-text] block-cmd
+direct +section : [string?; string?; inline-text; block-text] block-cmd
+direct +subsection : [string?; string?; inline-text; block-text] block-cmd
 direct \LaTeX : [] inline-cmd
 direct \SATySFi : [] inline-cmd
 direct \TeX : [] inline-cmd
@@ -220,6 +220,7 @@ direct \figure : [string?; inline-text; block-text] inline-cmd
 direct \fil : [] inline-cmd
 direct \fil-both : [] inline-cmd
 direct \footnote : [inline-text] inline-cmd
+direct \href : [(length * color)?; string; inline-text] inline-cmd
 direct \hskip : [length] inline-cmd
 direct \math : [math] inline-cmd
 direct \math-list : [math list] inline-cmd
@@ -234,8 +235,8 @@ let-block ctx +math a1 = block-nil
 let-block ctx +math-list a1 = block-nil
 let-block ctx +p a1 = block-nil
 let-block ctx +pn a1 = block-nil
-let-block ctx +section ?:a1 a2 a3 = block-nil
-let-block ctx +subsection ?:a1 a2 a3 = block-nil
+let-block ctx +section ?:a1 ?:a2 a3 a4 = block-nil
+let-block ctx +subsection ?:a1 ?:a2 a3 a4 = block-nil
 let-inline ctx \LaTeX = inline-nil
 let-inline ctx \SATySFi = inline-nil
 let-inline ctx \TeX = inline-nil
@@ -246,6 +247,7 @@ let-inline ctx \figure ?:a1 a2 a3 = inline-nil
 let-inline ctx \fil = inline-nil
 let-inline ctx \fil-both = inline-nil
 let-inline ctx \footnote a1 = inline-nil
+let-inline ctx \href ?:a1 a2 a3 = inline-nil
 let-inline ctx \hskip a1 = inline-nil
 let-inline ctx \math a1 = inline-nil
 let-inline ctx \math-list a1 = inline-nil
