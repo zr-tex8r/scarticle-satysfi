@@ -1,0 +1,26 @@
+opam-version: "2.0"
+name: "scarticle-satysfi"
+version: "0.3.3"
+synopsis: "SATySFi Document Class for Snowman Comedians"
+description: """
+An essential SATySFi document class for snowman comedians.
+
+This requires Satyrographos to install. See https://github.com/na4zagin3/satyrographos.
+"""
+maintainer: "Takayuki YATO <zr_tex8r-allez@yahoo.co.jp>"
+authors: "Takayuki YATO <zr_tex8r-allez@yahoo.co.jp>"
+license: "MIT"
+homepage: "https://github.com/zr-tex8r/scarticle-satysfi"
+bug-reports: "https://github.com/zr-tex8r/scarticle-satysfi"
+dev-repo: "git+https://github.com/zr-tex8r/scarticle-satysfi.git"
+depends: [
+  "satysfi" {>= "0.0.3" & < "0.0.4"}
+  "satyrographos" {>= "0.0.1" & < "0.0.2"}
+]
+build: [ ]
+install: [
+  [make "-f" "Makefile" "install" "PREFIX=%{prefix}%"]
+]
+remove: [
+  [make "-f" "Makefile" "uninstall" "PREFIX=%{prefix}%"]
+]
